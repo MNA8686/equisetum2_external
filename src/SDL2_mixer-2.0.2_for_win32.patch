@@ -1,0 +1,133 @@
+diff -ur SDL2_mixer-2.0.2.org/VisualC/native_midi/native_midi.vcxproj SDL2_mixer-2.0.2/VisualC/native_midi/native_midi.vcxproj
+--- SDL2_mixer-2.0.2.org/VisualC/native_midi/native_midi.vcxproj	2018-05-16 13:33:50.674339200 +0900
++++ SDL2_mixer-2.0.2/VisualC/native_midi/native_midi.vcxproj	2018-05-16 13:24:54.462787700 +0900
+@@ -21,6 +21,7 @@
+   <PropertyGroup Label="Globals">
+     <ProjectName>native_midi</ProjectName>
+     <ProjectGuid>{EBDA67CA-4A23-4F22-BFBC-B8DBE0580D4F}</ProjectGuid>
++    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+@@ -28,6 +29,7 @@
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
++    <PlatformToolset>v140</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+@@ -80,7 +82,7 @@
+   </PropertyGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+     <ClCompile>
+-      <AdditionalIncludeDirectories>..\..;..\..\native_midi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++      <AdditionalIncludeDirectories>..\..\..\SDL2-2.0.8\include;..\..;..\..\native_midi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+       <WarningLevel>Level3</WarningLevel>
+diff -ur SDL2_mixer-2.0.2.org/VisualC/SDL_mixer.sln SDL2_mixer-2.0.2/VisualC/SDL_mixer.sln
+--- SDL2_mixer-2.0.2.org/VisualC/SDL_mixer.sln	2018-05-16 13:33:49.611702800 +0900
++++ SDL2_mixer-2.0.2/VisualC/SDL_mixer.sln	2018-05-16 13:24:04.747076700 +0900
+@@ -1,6 +1,8 @@
+ ﻿
+-Microsoft Visual Studio Solution File, Format Version 11.00
+-# Visual Studio 2010
++Microsoft Visual Studio Solution File, Format Version 12.00
++# Visual Studio 14
++VisualStudioVersion = 14.0.25420.1
++MinimumVisualStudioVersion = 10.0.40219.1
+ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDL2_mixer", "SDL_mixer.vcxproj", "{F7E944B3-0815-40CD-B3E4-90B2A15B0E33}"
+ EndProject
+ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "native_midi", "native_midi\native_midi.vcxproj", "{EBDA67CA-4A23-4F22-BFBC-B8DBE0580D4F}"
+@@ -40,7 +42,6 @@
+ 		{72CB0DD4-051D-486C-9CB3-75FE16F7D87A}.Debug|x64.ActiveCfg = Debug|x64
+ 		{72CB0DD4-051D-486C-9CB3-75FE16F7D87A}.Debug|x64.Build.0 = Debug|x64
+ 		{72CB0DD4-051D-486C-9CB3-75FE16F7D87A}.Release|Win32.ActiveCfg = Release|Win32
+-		{72CB0DD4-051D-486C-9CB3-75FE16F7D87A}.Release|Win32.Build.0 = Release|Win32
+ 		{72CB0DD4-051D-486C-9CB3-75FE16F7D87A}.Release|x64.ActiveCfg = Release|x64
+ 		{72CB0DD4-051D-486C-9CB3-75FE16F7D87A}.Release|x64.Build.0 = Release|x64
+ 		{AC86CEAA-9908-476F-B15F-C7193CEF81BD}.Debug|Win32.ActiveCfg = Debug|Win32
+@@ -48,7 +49,6 @@
+ 		{AC86CEAA-9908-476F-B15F-C7193CEF81BD}.Debug|x64.ActiveCfg = Debug|x64
+ 		{AC86CEAA-9908-476F-B15F-C7193CEF81BD}.Debug|x64.Build.0 = Debug|x64
+ 		{AC86CEAA-9908-476F-B15F-C7193CEF81BD}.Release|Win32.ActiveCfg = Release|Win32
+-		{AC86CEAA-9908-476F-B15F-C7193CEF81BD}.Release|Win32.Build.0 = Release|Win32
+ 		{AC86CEAA-9908-476F-B15F-C7193CEF81BD}.Release|x64.ActiveCfg = Release|x64
+ 		{AC86CEAA-9908-476F-B15F-C7193CEF81BD}.Release|x64.Build.0 = Release|x64
+ 		{B162B6F1-E876-4D5F-A1F6-E3A6DC2F4A2C}.Debug|Win32.ActiveCfg = Debug|Win32
+diff -ur SDL2_mixer-2.0.2.org/VisualC/SDL_mixer.vcxproj SDL2_mixer-2.0.2/VisualC/SDL_mixer.vcxproj
+--- SDL2_mixer-2.0.2.org/VisualC/SDL_mixer.vcxproj	2018-05-16 13:33:49.627305900 +0900
++++ SDL2_mixer-2.0.2/VisualC/SDL_mixer.vcxproj	2018-05-16 13:25:30.319420800 +0900
+@@ -1,5 +1,5 @@
+ ﻿<?xml version="1.0" encoding="utf-8"?>
+-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <ItemGroup Label="ProjectConfigurations">
+     <ProjectConfiguration Include="Debug|Win32">
+       <Configuration>Debug</Configuration>
+@@ -26,15 +26,19 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+     <ConfigurationType>DynamicLibrary</ConfigurationType>
++    <PlatformToolset>v140</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+     <ConfigurationType>DynamicLibrary</ConfigurationType>
++    <PlatformToolset>v140</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+     <ConfigurationType>DynamicLibrary</ConfigurationType>
++    <PlatformToolset>v140</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+     <ConfigurationType>DynamicLibrary</ConfigurationType>
++    <PlatformToolset>v140</PlatformToolset>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+   <ImportGroup Label="ExtensionSettings">
+@@ -151,7 +155,7 @@
+     </Midl>
+     <ClCompile>
+       <AdditionalOptions>/D OGG_DYNAMIC=\"libvorbisfile-3.dll\" %(AdditionalOptions)</AdditionalOptions>
+-      <AdditionalIncludeDirectories>..\timidity;..\native_midi;external\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++      <AdditionalIncludeDirectories>..\..\SDL2-2.0.8\include;..\timidity;..\native_midi;external\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+       <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;MUSIC_WAV;MUSIC_MOD_MODPLUG;MODPLUG_DYNAMIC="libmodplug-1.dll";MUSIC_OGG;OGG_DYNAMIC="libvorbisfile-3.dll";MUSIC_FLAC;FLAC_DYNAMIC="libFLAC-8.dll";MUSIC_MP3_MPG123;MPG123_DYNAMIC="libmpg123-0.dll";MUSIC_MID_TIMIDITY;MUSIC_MID_NATIVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+       <WarningLevel>Level3</WarningLevel>
+@@ -163,6 +167,7 @@
+     <Link>
+       <AdditionalDependencies>winmm.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+       <SubSystem>Windows</SubSystem>
++      <AdditionalLibraryDirectories>..\..\SDL2-2.0.8\VisualC\Win32\Release</AdditionalLibraryDirectories>
+     </Link>
+     <Bscmake />
+   </ItemDefinitionGroup>
+diff -ur SDL2_mixer-2.0.2.org/VisualC/timidity/timidity.vcxproj SDL2_mixer-2.0.2/VisualC/timidity/timidity.vcxproj
+--- SDL2_mixer-2.0.2.org/VisualC/timidity/timidity.vcxproj	2018-05-16 13:33:50.752423300 +0900
++++ SDL2_mixer-2.0.2/VisualC/timidity/timidity.vcxproj	2018-05-16 13:24:54.447163300 +0900
+@@ -45,6 +45,7 @@
+     <ProjectName>timidity</ProjectName>
+     <ProjectGuid>{B162B6F1-E876-4D5F-A1F6-E3A6DC2F4A2C}</ProjectGuid>
+     <RootNamespace>timidity</RootNamespace>
++    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+@@ -52,6 +53,7 @@
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
++    <PlatformToolset>v140</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+@@ -104,7 +106,7 @@
+   </PropertyGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+     <ClCompile>
+-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++      <AdditionalIncludeDirectories>..\..\..\SDL2-2.0.8\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+       <WarningLevel>Level3</WarningLevel>
