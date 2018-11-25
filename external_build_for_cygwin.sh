@@ -179,6 +179,7 @@ cp VisualC/Win32/Release/${LIB_NAME}.dll ${CUR_DIR}/${DEP_DIR}/${TARGET_DIR}/${L
 cp VisualC/Win32/Release/libogg-0.dll ${CUR_DIR}/${DEP_DIR}/${TARGET_DIR}/${LIB_NAME}/dll
 cp VisualC/Win32/Release/libvorbis-0.dll ${CUR_DIR}/${DEP_DIR}/${TARGET_DIR}/${LIB_NAME}/dll
 cp VisualC/Win32/Release/libvorbisfile-3.dll ${CUR_DIR}/${DEP_DIR}/${TARGET_DIR}/${LIB_NAME}/dll
+cp VisualC/Win32/Release/libmpg123-0.dll ${CUR_DIR}/${DEP_DIR}/${TARGET_DIR}/${LIB_NAME}/dll
 cd ${CUR_DIR}
 
 exit;
